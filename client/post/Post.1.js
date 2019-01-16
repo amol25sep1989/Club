@@ -151,13 +151,7 @@ class Post1 extends Component {
             {this.props.post.title}
           </Typography>)}
 
-          {this.props.post.photo ?
-            (<div className={classes.photo}>
-              <img
-                className={classes.media}
-                src={'/api/posts/photo/'+this.props.post._id}
-                />
-            </div>):
+          {
 
             (
               <Link to={"/media/"+this.props.post._id}>
