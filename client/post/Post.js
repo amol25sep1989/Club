@@ -158,9 +158,7 @@ class Post extends Component {
             </div>):
 
             (
-              <Link to={"/media/"+this.props.post._id}>
-                <ReactPlayer url={'/api/media/video/'+this.props.post._id} width='100%' height='inherit' style={{maxHeight: '100%'}}/>
-              </Link>
+              <div></div>
             )
             
           }
