@@ -52,14 +52,17 @@ class Profile extends Component {
     this.match = match
   }
   init = (userId) => {
+    console.log("userId "+userId);
     const jwt = auth.isAuthenticated()
     read({
       userId: userId
     }, {t: jwt.token}).then((data) => {
       if (data.error) {
+        console.log(" data.error "+data.error);
         this.setState({redirectToSignin: true})
       } else {
         let following = this.checkFollow(data)
+        console.log("calling checkfollow "+JSON.stringify(following)); 
         this.setState({user: data, following: following})
         this.loadPosts(data._id)
         listByUserMedia({userId: data._id}).then((media) => {
@@ -78,12 +81,20 @@ class Profile extends Component {
   componentDidMount = () => {
     this.init(this.match.params.userId)
   }
+
   checkFollow = (user) => {
     const jwt = auth.isAuthenticated()
     const match = user.followers.find((follower)=> {
       return follower._id == jwt.user._id
     })
-    return match
+    //console.log("match "+JSON.stringify(match));
+       if(match)
+      {
+        return true;
+      }
+      else{
+        return false;
+      }
   }
   clickFollowButton = (callApi) => {
     const jwt = auth.isAuthenticated()
@@ -115,25 +126,7 @@ class Profile extends Component {
     })
   }
 
-  init = (userId) => {
-    const jwt = auth.isAuthenticated()
-    read({
-      userId: userId
-    }, {t: jwt.token}).then((data) => {
-      if (data.error) {
-        this.setState({redirectToSignin: true})
-      } else {
-        this.setState({user: data})
-        listByUserMedia({userId: data._id}).then((media) => {
-          if (media.error) {
-            console.log(media.error)
-          } else {
-            this.setState({media: media})
-          }
-        })
-      }
-    })
-  }
+ 
   removePost = (post) => {
     const updatedPosts = this.state.posts
     const index = updatedPosts.indexOf(post)
