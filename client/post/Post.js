@@ -107,6 +107,7 @@ class Post extends Component {
   }
 
   updateComments = (comments) => {
+    console.log("Post.1 updateComments "+JSON.stringify(comments));
     this.setState({comments: comments})
   }
 
