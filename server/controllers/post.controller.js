@@ -186,7 +186,9 @@ const comment = (req, res) => {
         error: errorHandler.getErrorMessage(err)
       })
     }
+    console.log("post commment "+result);
     res.json(result)
+    
   })
 }
 else{
@@ -199,6 +201,7 @@ else{
         error: errorHandler.getErrorMessage(err)
       })
     }
+    console.log("Media commment "+result);
     res.json(result)
   })
 
