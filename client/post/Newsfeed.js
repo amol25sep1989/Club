@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography'
 import Divider from 'material-ui/Divider'
 import auth from './../auth/auth-helper'
 import PostList from './PostList'
-import PostList1 from './PostList.1'
+import PostListMedia from './PostListMedia'
 import {listNewsFeed,listNewsFeedVideos} from './api-post.js'
 import {listByUserMedia} from './../media/api-media.js'
 import MediaList from './../media/MediaList'
@@ -117,7 +117,7 @@ class Newsfeed extends Component {
   Newsfeed Videos New Component
 </Typography>
 <Divider/>
-<PostList1 removeMediaUpdate={this.removeMediaPost} posts={this.state.media}/>
+<PostListMedia removeMediaUpdate={this.removeMediaPost} posts={this.state.media}/>
 </Card>
 
 </div>
