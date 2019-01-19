@@ -109,6 +109,7 @@ class Comments1 extends Component {
               className={classes.cardHeader}
         />
         { this.props.comments.map((item, i) => {
+         //console.log("  item "+JSON.stringify(item));
             return <CardHeader
                       avatar={
                         <Avatar className={classes.smallAvatar} src={'/api/users/photo/'+item.postedBy._id}/>
