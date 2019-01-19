@@ -61,6 +61,7 @@ class Post1 extends Component {
     //window.map = this;
    // this.addVideo(_publicId);
     this.setState({like:this.checkLike(this.props.post.likes), likes: this.props.post.likes.length, comments: this.props.post.comments})
+    //this.updateComments(this.props.post.comments);
   }
   componentWillReceiveProps = (props) => {
     this.setState({like:this.checkLike(props.post.likes), likes: props.post.likes.length, comments: props.post.comments})
@@ -108,11 +109,13 @@ class Post1 extends Component {
   }
 
   updateComments = (comments) => {
+    //console.log("Post.1 updateComments "+JSON.stringify(comments));
     this.setState({comments: comments})
   }
 
   deletePost = () => {
     const jwt = auth.isAuthenticated()
+    console.log("this.props.post._id "+this.props.post._id);
     remove({
       postId: this.props.post._id
     }, {
@@ -121,6 +124,7 @@ class Post1 extends Component {
       if (data.error) {
         console.log(data.error)
       } else {
+        console.log("Post Deleted");
         this.props.onRemove(this.props.post)
       }
     })
@@ -155,7 +159,7 @@ class Post1 extends Component {
 
             (
               <Link to={"/media/"+this.props.post._id}>
-                <ReactPlayer url={'/api/media/video/'+this.props.post._id} width='100%' height='inherit' style={{maxHeight: '100%'}} controls="true" />
+                <ReactPlayer url={'/api/media/video/'+this.props.post._id} width='100%' height='inherit' style={{maxHeight: '100%'}} controls/>
                 </Link>
             )
             
