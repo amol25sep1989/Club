@@ -27,7 +27,7 @@ const listPopular = (params) => {
 }
 
 const listByUserMedia = (params) => {
-  return fetch('/api/media/by/'+ params.userId, {
+  return fetch('/api/media/list/by/'+ params.userId, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -63,7 +63,8 @@ const update = (params, credentials, media) => {
 }
 
 const remove = (params, credentials) => {
-  return fetch('/api/media/' + params.mediaId, {
+  console.log(" remove api-media "+params.postId);
+  return fetch('/api/media/' + params.postId, {
     method: 'DELETE',
     headers: {
       'Accept': 'application/json',
