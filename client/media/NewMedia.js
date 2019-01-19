@@ -84,7 +84,9 @@ class NewMedia extends Component {
   render() {
     const {classes} = this.props
     if (this.state.redirect) {
-      return (<Redirect to={'/media/' + this.state.mediaId}/>)
+      alert("Video Uploaded Successfully");
+      return (<Redirect to={'/'}/>)
+      //return (<Redirect to={'/media/' + this.state.mediaId}/>)
     }
     return (
       <Card className={classes.card}>
