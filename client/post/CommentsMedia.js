@@ -38,7 +38,7 @@ const styles = theme => ({
  }
 })
 
-class Comments1 extends Component {
+class CommentsMedia extends Component {
   state = {text: ''}
   handleChange = name => event => {
     this.setState({[name]: event.target.value})
@@ -123,11 +123,11 @@ class Comments1 extends Component {
   }
 }
 
-Comments1.propTypes = {
+CommentsMedia.propTypes = {
   classes: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   comments: PropTypes.array.isRequired,
   updateComments: PropTypes.func.isRequired
 }
 
-export default withStyles(styles)(Comments1)
+export default withStyles(styles)(CommentsMedia)
