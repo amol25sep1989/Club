@@ -131,6 +131,24 @@ const listByUser = (req, res) => {
   })
 }
 
+const listMediaByUser = (req, res) => {
+  let following = req.profile.following
+  following.push(req.profile._id)
+  Media.find({postedBy: { $in : req.profile.following } })
+  .populate('comments', 'text created')
+  .populate('comments.postedBy', '_id name')
+  .populate('postedBy', '_id name')
+  .sort('-created')
+  .exec((err, posts) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(posts)
+  })
+}
+
 const read = (req, res) => {
   return res.json(req.media)
 }
@@ -273,5 +291,6 @@ export default {
   like,
   unlike,
   comment,
-  uncomment
+  uncomment,
+  listMediaByUser
 }
