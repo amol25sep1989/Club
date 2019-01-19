@@ -12,7 +12,8 @@ import {listByUserMedia} from './../media/api-media.js'
 import MediaList from './../media/MediaList'
 
 import NewPost from './NewPost'
-import MediaListNewsFeed from './../media/MediaListNewsFeed';
+import {read} from './../user/api-user.js'
+
 
 const styles = theme => ({
   card: {
@@ -45,58 +46,26 @@ class Newsfeed extends Component {
         console.log(data.error)
       } else {
         this.setState({posts: data})
-
-        
-
       }
     })
   }
 
   loadVideoPosts = () => {
-
-    console.log("call loadVideoPosts");
-
     const jwt = auth.isAuthenticated()
 
-    listNewsFeedVideos({
-      userId: jwt.user._id
-    }, {
-      t: jwt.token
-    }).then((data) => {
-      if (data.error) {
-        console.log(data.error)
-      } else {
-        console.log(JSON.stringify(data));
-        for(var i=0;i<data.length;i++)
-        {
-          listByUserMedia({userId:data[i]}).then((media) => {
-            if (media.error) {
-              console.log(media.error)
-            } else {
-              console.log(this.state.media);
-              if(this.state.media.length!=0)
-              {
-                var arr=this.state.media;
-                for(var j=0;j<media.length;j++)
-                {
-                  arr.push(media[j])
-                }
-                this.setState({media: arr})
-              }
-              else{
-                this.setState({media: media})
-              }
-              
-              console.log("media"+media);
-      
-            }
-          })  
-
-        }
+    listByUserMedia({
+      userId:jwt.user._id
+    }).then((media)=>{
+      if(media.error){
+        console.log(media.error)
+      }
+      else{
+        this.setState({media: media})
       }
     })
-
   }
+
+    
  
   componentDidMount = () => {
     this.loadPosts();
@@ -113,6 +82,13 @@ class Newsfeed extends Component {
     updatedPosts.splice(index, 1)
     this.setState({posts: updatedPosts})
   }
+  removeMediaPost = (post) => {
+    const updatedMedia = this.state.media
+    const mediaIndex = updatedMedia.indexOf(post)
+    updatedMedia.splice(mediaIndex, 1)
+    this.setState({media: updatedMedia})
+  }
+  
   render() {
     const {classes} = this.props
     return (
@@ -141,7 +117,7 @@ class Newsfeed extends Component {
   Newsfeed Videos New Component
 </Typography>
 <Divider/>
-<PostList1 removeUpdate={this.removePost} posts={this.state.media}/>
+<PostList1 removeMediaUpdate={this.removeMediaPost} posts={this.state.media}/>
 </Card>
 
 </div>
