@@ -14,7 +14,7 @@ import {withStyles} from 'material-ui/styles'
 import {Link} from 'react-router-dom'
 import {remove,addVideo } from './../media/api-media.js'
 import {medialike,mediaunlike} from './api-post.js'
-import Comments1 from './Comments.1.js'
+import CommentsMedia from './CommentsMedia.js'
 import ReactPlayer from 'react-player'
 
 const styles = theme => ({
@@ -48,7 +48,7 @@ const styles = theme => ({
   }
 })
 
-class Post1 extends Component {
+class PostMedia extends Component {
   state = {
     like: false,
     likes: 0,
@@ -109,7 +109,6 @@ class Post1 extends Component {
   }
 
   updateComments = (comments) => {
-    //console.log("Post.1 updateComments "+JSON.stringify(comments));
     this.setState({comments: comments})
   }
 
@@ -178,16 +177,16 @@ class Post1 extends Component {
               </IconButton> <span>{this.state.comments.length}</span>
         </CardActions>
         <Divider/>
-        <Comments1 postId={this.props.post._id} comments={this.state.comments} updateComments={this.updateComments}/>
+        <CommentsMedia postId={this.props.post._id} comments={this.state.comments} updateComments={this.updateComments}/>
       </Card>
     )
   }
 }
 
-Post1.propTypes = {
+PostMedia.propTypes = {
   classes: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
   onRemove: PropTypes.func.isRequired
 }
 
-export default withStyles(styles)(Post1)
+export default withStyles(styles)(PostMedia)
