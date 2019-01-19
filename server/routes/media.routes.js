@@ -20,6 +20,9 @@ router.route('/api/media/related/:mediaId')
 router.route('/api/media/by/:userId')
     .get(mediaCtrl.listByUser)
 
+router.route('/api/media/list/by/:userId')
+    .get(mediaCtrl.listMediaByUser)
+
 router.route('/api/media/:mediaId')
     .get( mediaCtrl.incrementViews, mediaCtrl.read)
     .put(authCtrl.requireSignin, mediaCtrl.isPoster, mediaCtrl.update)
