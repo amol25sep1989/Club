@@ -77,9 +77,18 @@ class NewMedia extends Component {
     const value = name === 'video'
       ? event.target.files[0]
       : event.target.value
+
+      console.log(" name "+name+ "value "+value);
     this.mediaData.set(name, value)
     this.setState({ [name]: value })
+    console.log(JSON.stringify(this.mediaData));
   }
+
+  change= (event)=>{
+    console.log("change "+event.target.value);
+    this.setState({genre: event.target.value});
+    this.mediaData.set(gen, event.target.value)
+}
 
   render() {
     const {classes} = this.props
@@ -112,13 +121,18 @@ class NewMedia extends Component {
             className={classes.textField}
             margin="normal"
           /><br/>
-          <TextField id="genre" label="Genre" className={classes.textField} value={this.state.genre} onChange={this.handleChange('genre')} margin="normal"/><br/>
-          <br/> {
-                  this.state.error && (<Typography component="p" color="error">
-                      <Icon color="error" className={classes.error}>error</Icon>
-                      {this.state.error}
-                    </Typography>)
-                }
+           
+
+
+          
+    <label>Genre</label>       <select  onChange={this.handleChange('genre')} value={this.state.gen}>
+    <option value="">Select</option>
+    <option value="Sports">Sports</option>
+  <option value="Bollywood">Bollywood</option>
+  <option value="Hollywood">Hollywood</option>
+  <option value="Politics">Politics</option>
+  <option value="Television">Television</option>
+</select>
         </CardContent>
         <CardActions>
           <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
