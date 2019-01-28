@@ -17,6 +17,21 @@ router.route('/api/media/popular')
 router.route('/api/media/related/:mediaId')
     .get(mediaCtrl.listRelated)
 
+router.route('/api/media/sportsRelated')
+    .get(mediaCtrl.listSportsRelated)
+router.route('/api/media/bollywoodRelated')
+    .get(mediaCtrl.listBollywoodRelated)
+router.route('/api/media/hollywoodRelated')
+    .get(mediaCtrl.listHollywoodRelated)
+router.route('/api/media/politicsRelated')
+    .get(mediaCtrl.listPoliticsRelated)
+router.route('/api/media/televisionRelated')
+    .get(mediaCtrl.listTelevisionRelated)
+
+
+router.route('/api/media/genrerelated/:genre')
+    .get(mediaCtrl.listGenreRelated)
+
 router.route('/api/media/by/:userId')
     .get(mediaCtrl.listByUser)
 
