@@ -51,7 +51,9 @@ class FindPeople extends Component {
       if (data.error) {
         console.log(data.error)
       } else {
+        data.sort(function(a, b){return b.followers.length - a.followers.length});
         this.setState({users: data})
+        //console.log("users "+JSON.stringify(data));
       }
     })
   }
@@ -95,7 +97,7 @@ class FindPeople extends Component {
                         <ViewIcon/>
                       </IconButton>
                     </Link>
-                    
+                    {item.followers.length} Followers
                   </ListItemSecondaryAction>
                 </ListItem>
               </span>
