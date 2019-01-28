@@ -11,7 +11,10 @@ import FindPeople from './../user/FindPeople'
 import Newsfeed from './../post/Newsfeed'
 
 import MediaList from '../media/MediaList'
-import {listPopular} from '../media/api-media.js'
+import {listPopular,listSportsRelated,listGenreRelated,listBollywoodRelated,
+  listHollywoodRelated,
+  listPoliticsRelated,
+  listTelevisionRelated} from '../media/api-media.js'
 
 const styles = theme => ({
   root: {
@@ -35,9 +38,64 @@ const styles = theme => ({
 class Home extends Component {
   state = {
     defaultPage: true,
-    media:[]
+    media:[],
+    sportsmedia:[],
+    bollywoodmedia:[],
+    hollywoodmedia:[],
+    politicsmedia:[],
+    televisionmedia:[]  
   }
+loadRelatedVideos = () => {
+  listSportsRelated().then((data) => {
+    if (data.error) {
+      console.log(data.error)
+    } else {
+      console.log(data);
+      this.setState({sportsmedia: data})
+    }
+  })
 
+  /*listGenreRelated({
+    genre: 'Bollywood'}).then((data) => {
+    if (data.error) {
+      console.log(data.error)
+    } else {
+      this.setState({bollywoodmedia: data})
+
+      console.log("bollywoodmedia "+JSON.stringify(data));
+    }
+  })*/
+  listBollywoodRelated().then((data) => {
+    if (data.error) {
+      console.log(data.error)
+    } else {
+      console.log("bollywoodmedia "+JSON.stringify(data));
+      this.setState({bollywoodmedia: data})
+    }
+  })
+  listHollywoodRelated().then((data) => {
+    if (data.error) {
+      console.log(data.error)
+    } else {
+      this.setState({hollywoodmedia: data})
+    }
+  })
+  listPoliticsRelated().then((data) => {
+    if (data.error) {
+      console.log(data.error)
+    } else {
+      this.setState({politicsmedia: data})
+    }
+  })
+  listTelevisionRelated().then((data) => {
+    if (data.error) {
+      console.log(data.error)
+    } else {
+      this.setState({televisionmedia: data})
+    }
+  })
+
+}
   componentDidMount = () => {
     this.init();
     listPopular().then((data) => {
@@ -46,7 +104,9 @@ class Home extends Component {
       } else {
         this.setState({media: data})
       }
-    })
+    });
+
+    this.loadRelatedVideos();
   }
 
   init = () => {
@@ -67,23 +127,38 @@ class Home extends Component {
         {this.state.defaultPage &&
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <Card className={classes.card}>
-                <Typography type="headline" component="h1" className={classes.title}>
-                 <font color = "#ffa726"> Home Page</font>
-                </Typography>
-                <CardMedia className={classes.media} image={seashellImg} title="Unicorn Shells"/>
-                <CardContent>
-                  <Typography type="body1" component="p">
-    <marquee width = "100%" direction = "right" bgcolor = "skyblue"><font color = "#ffa726"> Welcome to the CLUB NEW App. </font></marquee>
-                  </Typography>
-                </CardContent>
-              </Card>
-              <Card className={classes.card}>
+              
+              
         <Typography type="headline" component="h2" className={classes.title}>
           Popular Videos
         </Typography>
           <MediaList media={this.state.media}/>
-      </Card>
+      
+      <Typography type="headline" component="h2" className={classes.title}>
+          Sports Videos
+        </Typography>
+      <MediaList media={this.state.sportsmedia}/>
+
+       <Typography type="headline" component="h2" className={classes.title}>
+          Bollywood Videos
+        </Typography>
+      <MediaList media={this.state.bollywoodmedia}/>
+
+      <Typography type="headline" component="h2" className={classes.title}>
+          Hollywood Videos
+        </Typography>
+      <MediaList media={this.state.hollywoodmedia}/>
+
+      
+      <Typography type="headline" component="h2" className={classes.title}>
+          Politics Videos
+        </Typography>
+      <MediaList media={this.state.politicsmedia}/>
+
+      <Typography type="headline" component="h2" className={classes.title}>
+          Television Videos
+        </Typography>
+      <MediaList media={this.state.televisionmedia}/>
 
             </Grid>
           </Grid>
