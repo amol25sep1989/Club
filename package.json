@@ -1,9 +1,9 @@
 {
-  "name": "mern-social",
+  "name": "Club",
   "version": "1.0.0",
-  "description": "A MERN stack based social media application",
-  "author": "Shama Hoque",
-  "license": "MIT",
+  "description": "A MERN stack based Club Application",
+  "author": "Amol Meshram",
+  "license": "",
   "keywords": [
     "react",
     "express",
@@ -13,9 +13,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/shamahoque/mern-social.git"
+    "url": "https://github.com/amol25sep1989/Club.git"
   },
-  "homepage": "https://github.com/shamahoque/mern-social",
+  "homepage": "https://github.com/amol25sep1989/Club",
   "main": "./dist/server.generated.js",
   "scripts": {
     "development": "nodemon",
