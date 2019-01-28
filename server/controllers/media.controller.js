@@ -216,6 +216,91 @@ const listRelated = (req, res) => {
   })
 }
 
+const listSportsRelated = (req, res) => {
+  Media.find({ "genre":'Sports'}).limit(6)
+  .sort('-views')
+  .populate('postedBy', '_id name')
+  .exec((err, posts) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(posts)
+  })
+}
+
+const listBollywoodRelated = (req, res) => {
+  Media.find({ "genre":'Bollywood'}).limit(6)
+  .sort('-views')
+  .populate('postedBy', '_id name')
+  .exec((err, posts) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(posts)
+  })
+}
+
+const listHollywoodRelated = (req, res) => {
+  Media.find({ "genre":'Hollywood'}).limit(6)
+  .sort('-views')
+  .populate('postedBy', '_id name')
+  .exec((err, posts) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(posts)
+  })
+}
+
+const listPoliticsRelated = (req, res) => {
+  Media.find({ "genre":'Politics'}).limit(6)
+  .sort('-views')
+  .populate('postedBy', '_id name')
+  .exec((err, posts) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(posts)
+  })
+}
+
+const listTelevisionRelated = (req, res) => {
+  Media.find({ "genre":'Television'}).limit(6)
+  .sort('-views')
+  .populate('postedBy', '_id name')
+  .exec((err, posts) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(posts)
+  })
+}
+
+const listGenreRelated = (req, res) => {
+  console.log("On Server"+req)
+  Media.find({ "genre":req.genre}).limit(6)
+  .sort('-views')
+  .populate('postedBy', '_id name')
+  .exec((err, posts) => {
+    if (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+    res.json(posts)
+  })
+}
+
 const like = (req, res) => {
   console.log("On Server req.body.mediaId  "+req.body.mediaId+" req.body.userId  "+req.body.userId);
   //console.log("req.body.userId  "+req.body.userId);
@@ -288,6 +373,13 @@ export default {
   isPoster,
   remove,
   listRelated,
+  listSportsRelated,
+  listBollywoodRelated,
+  listHollywoodRelated,
+  listPoliticsRelated,
+  listTelevisionRelated,
+
+  listGenreRelated,
   like,
   unlike,
   comment,
