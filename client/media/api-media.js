@@ -90,6 +90,79 @@ const listRelated = (params) => {
   }).catch((err) => console.log(err))
 }
 
+const listGenreRelated = (params) => {
+  console.log("listGenreRelated "+JSON.stringify(params));
+  return fetch('/api/media/genrerelated/'+ params.genre, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
+const listSportsRelated = () => {
+  return fetch('/api/media/sportsRelated', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
+const listBollywoodRelated = (params) => {
+  return fetch('/api/media/bollywoodRelated', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
+const listHollywoodRelated = (params) => {
+  return fetch('/api/media/hollywoodRelated', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
+const listPoliticsRelated = (params) => {
+  return fetch('/api/media/politicsRelated', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
+const listTelevisionRelated = (params) => {
+  return fetch('/api/media/televisionRelated', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    return response.json()
+  }).catch((err) => console.log(err))
+}
+
 
 const like = (params, credentials, mediaId) => {
   console.log("  mediaId  "+mediaId+"   userId "+params.userId);
@@ -164,6 +237,12 @@ export {
   update,
   remove,
   listRelated,
+  listGenreRelated,
+  listSportsRelated,
+  listBollywoodRelated,
+  listHollywoodRelated,
+  listPoliticsRelated,
+  listTelevisionRelated,
   like,
   unlike,
   comment,
