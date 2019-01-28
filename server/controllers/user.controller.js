@@ -170,7 +170,9 @@ const findPeople = (req, res) => {
       })
     }
     res.json(users)
-  }).select('name')
+  }).select('name followers')
+
+  
 }
 
 export default {
