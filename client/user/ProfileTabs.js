@@ -15,6 +15,11 @@ class ProfileTabs extends Component {
     posts: []
   }
 
+  componentDidMount=()=>{
+    /*let followersLable = "Followers " +this.props.user.followers.length;
+    document.getElementById("followerTab").innerHTML=followersLable;*/
+  }
+
   componentWillReceiveProps = (props) => {
     this.setState({tab:0})
   }
@@ -23,6 +28,8 @@ class ProfileTabs extends Component {
   }
 
   render() {
+    let followersLable = "Followers  " +this.props.user.followers.length;
+    
     return (
     <div>
         <AppBar position="static" color="default">
@@ -35,7 +42,7 @@ class ProfileTabs extends Component {
           >
             <Tab label="Posts" />
             <Tab label="Following" />
-            <Tab label="Followers" />
+            <Tab label={followersLable} /> 
           </Tabs>
         </AppBar>
        {this.state.tab === 0 && <TabContainer><PostList removeUpdate={this.props.removePostUpdate} posts={this.props.posts}/></TabContainer>}
