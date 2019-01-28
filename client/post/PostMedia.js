@@ -56,12 +56,9 @@ class PostMedia extends Component {
   }
 
   componentDidMount = () => {
-    //console.log("Inside componentDIdMount post"+JSON.stringify(this.props.post));
-    //addVideo
-    //window.map = this;
-   // this.addVideo(_publicId);
+  
     this.setState({like:this.checkLike(this.props.post.likes), likes: this.props.post.likes.length, comments: this.props.post.comments})
-    //this.updateComments(this.props.post.comments);
+
   }
   componentWillReceiveProps = (props) => {
     this.setState({like:this.checkLike(props.post.likes), likes: props.post.likes.length, comments: props.post.comments})
